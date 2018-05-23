@@ -61,7 +61,7 @@ db.run(sqlstr); // Run the query without returning anything
 var test = new Array();
 
 
-function dataSet() {
+/* function dataSet() {
     var dataSet = new Array();
 
     for (var i=0;i++;i<20) {
@@ -69,10 +69,10 @@ function dataSet() {
     }
 
     console.log(dataSet[0]);
-};
+}; */
 
-window.dataSet = dataSet;
-window.onload = dataSet;
+/* window.dataSet = dataSet;
+window.onload = dataSet; */
 //Create array to store table names
 var tblName = new Array();
 var counter=0;
