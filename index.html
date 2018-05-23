@@ -1,0 +1,41 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Example</title>
+  <script src="bundle.js"></script> 
+  <style>
+  td a{width:100%; display:block}
+
+  .click a {
+  display: block;
+}
+
+  </style>
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+
+
+
+   <!--<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> -->
+   
+</head>
+<body>
+  <div align="right">
+      <table id="check" class="table table-bordered table-hover table-dark" style="width:30%"></table>
+  </div>
+  
+  <div align="center">
+    
+  <h2><label for="text"><b>SQL code: </b></label></h2></p>
+  <input type="text" id="text" class="form-control" style="width:30%;"></p>
+  <button type="button" id="execute" class="btn btn-success" onclick="execute(); check();">Execute</button>
+</div>
+  <p id="demo"></p>
+  
+  <table id="example" class="display" style="width:100%">
+  </table>
+
+</body>
+</html>
