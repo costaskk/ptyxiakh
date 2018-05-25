@@ -141,22 +141,28 @@
 
     <div class="container">
         <div class="media-container-row">
+            
             <div class="title col-12 col-md-8">
-                <h2 class="align-center pb-3 mbr-fonts-style display-2">
-                    Try it Yourself...</h2>
-                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5"></h3>
-                <div class="row">
-                        <div class="col-6">
+                    <h2 class="align-center pb-3 mbr-fonts-style display-2">
+                            Try it Yourself...</h2>
+                            
+                <div class="row justify-content-start">
+                        <div class="col">
+                                <i>Run an sqlite query and see what happens...</i>
                             <input type="text" id="text" class="form-control"></p>
                             <button type="button" id="execute" class="btn btn-success" onclick="execute(); check();">Execute</button>
                             <br/><br/>
-                            <p id="demo" style="width:70%;"></p>  
+                              
                         </div>
-                        <div class="col-6">
+                        <div class="col">
+                            <h4>List of tables in sqlite database</h4>
                           <table id="check" class="table table-bordered table-hover table-dark"></table>
                           <!-- <table id="example" class="display" style="width:70%"></table> -->
                         </div>
-                      </div>
+                    </div>
+                <div class="row justify-content-center">
+                        <p id="demo" style="width:70%;"></p>
+                </div>
             </div>
         </div>
     </div>
