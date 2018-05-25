@@ -127,16 +127,6 @@ function check() {
         
     }
     table += '</tbody>';
-    table += '<tfoot>';
-        table += '<tr>';
-
-    for (var index in schema_results[0].columns) {
-        //table+= '<th>Counter</th>'
-        table+= '<th class="text-capitalize">' + schema_results[0].columns[index] + '</th>';
-        table+= '<th>Number of Entries</th>';
-    } 
-    table += '</tr>';
-    table += '</tfoot>';
     //table += '</table>';
     document.getElementById("check").innerHTML = table; 
     
