@@ -27,7 +27,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // // Execute some sql
 var sqlstr = "CREATE TABLE users (name char, surname char, address char, telephone char);";
 sqlstr += "INSERT INTO users VALUES ('Mak-lee', 'Tahir-ee', 'Chinas street 420', '00355');"
-sqlstr += "INSERT INTO users VALUES ('Cost-ee', 'GrekoMontanaKaiKarampouzoukl-ee', 'Chinas street 420', '0030');"
+sqlstr += "INSERT INTO users VALUES ('Cost-ee', 'Karampouzoukl-ee', 'Chinas street 420', '0030');"
 sqlstr += "INSERT INTO users VALUES ('John', 'Doe', 'Doom 13', '0090');"
 db.run(sqlstr); // Run the query without returning anything
 
@@ -92,7 +92,7 @@ function check() {
 
     for (var index in schema_results[0].columns) {
         //table+= '<th>Counter</th>'
-        table+= '<th>' + schema_results[0].columns[index] + '</th>';
+        table+= '<th class="text-capitalize">' + schema_results[0].columns[index] + '</th>';
         table+= '<th>Number of Entries</th>';
     } 
     table += '</tr>';
@@ -132,7 +132,7 @@ function check() {
 
     for (var index in schema_results[0].columns) {
         //table+= '<th>Counter</th>'
-        table+= '<th>' + schema_results[0].columns[index] + '</th>';
+        table+= '<th class="text-capitalize">' + schema_results[0].columns[index] + '</th>';
         table+= '<th>Number of Entries</th>';
     } 
     table += '</tr>';
@@ -201,7 +201,7 @@ function execute()
                 table_string += '<tr>';
 
             for (var index in query_results[0].columns) {
-                table_string += '<th>' + query_results[0].columns[index] + '</th>';
+                table_string += '<th class="text-capitalize">' + query_results[0].columns[index] + '</th>';
             } 
             table_string += '</tr>';
             for (var row_index in query_results[0].values) {
