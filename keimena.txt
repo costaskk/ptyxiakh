@@ -26,4 +26,3 @@ They emphasize scalability, concurrency, centralization, and control. SQLite str
 SQLite emphasizes economy, efficiency, reliability, independence, and simplicity.
 
 SQLite does not compete with client/server databases. SQLite competes with fopen().
-

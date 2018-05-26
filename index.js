@@ -31,51 +31,12 @@ sqlstr += "INSERT INTO users VALUES ('Cost-ee', 'Karampouzoukl-ee', 'Chinas stre
 sqlstr += "INSERT INTO users VALUES ('John', 'Doe', 'Doom 13', '0090');"
 db.run(sqlstr); // Run the query without returning anything
 
-//var res = db.exec("SELECT * FROM users");
-
-// // Prepare an sql statement
-// // var stmt = db.prepare("SELECT * FROM hello WHERE a=:aval AND b=:bval");
-
-// // // Bind values to the parameters and fetch the results of the query
-// // var result = stmt.getAsObject({':aval' : 1, ':bval' : 'world'});
-// // console.log(result); // Will print {a:1, b:'world'}
-
-// // // Bind other values
-// // stmt.bind([0, 'hello']);
-// // while (stmt.step()) console.log(stmt.get()); // Will print [0, 'hello']
-
-// // // You can also use javascript functions inside your SQL code
-// // // Create the js function you need
-// // function add(a, b) {return a+b;}
-// // // Specifies the SQL function's name, the number of it's arguments, and the js function to use
-// // db.create_function("add_js", add);
-// // // Run a query in which the function is used
-// // db.run("INSERT INTO hello VALUES (add_js(7, 3), add_js('Hello ', 'world'));"); // Inserts 10 and 'Hello world'
-
-// // // free the memory used by the statement
-// // stmt.free();
-// // // You can not use your statement anymore once it has been freed.
-// // // But not freeing your statements causes memory leaks. You don't want that.
-
 //Create global list of tables
 var test = new Array();
 
 
-/* function dataSet() {
-    var dataSet = new Array();
-
-    for (var i=0;i++;i<20) {
-        dataSet.push(i);
-    }
-
-    console.log(dataSet[0]);
-}; */
-
-/* window.dataSet = dataSet;
-window.onload = dataSet; */
-//Create array to store table names
 var tblName = new Array();
-var counter=0;
+var id=0;
 //Function to show list of tables in our database
 function check() {
     var schema = "select name from sqlite_master where type='table';";
@@ -84,52 +45,49 @@ function check() {
 
     try {
         var schema_results = db.exec(schema);
-        //counter=0;
+        //id=0;
 
-        //var table = '<table id="example" class="display" style="width:100%">';
         var table = '<thead>';
         table += '<tr>';
 
-    for (var index in schema_results[0].columns) {
-        //table+= '<th>Counter</th>'
-        table+= '<th class="text-capitalize">' + schema_results[0].columns[index] + '</th>';
-        table+= '<th>Number of Entries</th>';
-    } 
-    table += '</tr>';
-    table += '</thead>';
-    table += '<tbody>';
-    for (var row_index in schema_results[0].values) {
-        table += '<tr>';
-        //counter=0;
-        for (var col_index in schema_results[0].values[row_index]) {
-            //Name of each table
-            var tablename = schema_results[0].values[row_index][col_index];
-            
-            //Query to count rows of each table
-            var countRows = "SELECT COUNT() FROM " + tablename + ";";
-            var rows = db.exec(countRows);
-            
-            //Add to the array of table names
-            tblName.push(tablename);
-       
-            //table += '<td>' + counter + '</td>';
-            //Name of each table as link to reveal corresponding table
-            table += '<td onclick="createTable('+counter+');" style="cursor:pointer">' + tblName[counter] + '</td>';
-            
-            //Count and show the number of rows in each table
-            for (var row_index in rows[0].values) {
-                table += '<td>' + rows[0].values[row_index][col_index] + '</td>';
-            }
-            counter++;
+        for (var index in schema_results[0].columns) {
+            table+= '<th class="text-capitalize">' + schema_results[0].columns[index] + '</th>';
+            table+= '<th>Number of Entries</th>';
         }
-        
+
         table += '</tr>';
+        table += '</thead>';
+        table += '<tbody>';
+        for (var row_index in schema_results[0].values) {
+            table += '<tr>';
+            //id=0;
+            for (var col_index in schema_results[0].values[row_index]) {
+                //Name of each table
+                var tablename = schema_results[0].values[row_index][col_index];
+            
+                //Query to count rows of each table
+                var countRows = "SELECT COUNT() FROM " + tablename + ";";
+                var rows = db.exec(countRows);
+            
+                //Add to the array of table names
+                tblName.push(tablename);
+       
+                //table += '<td>' + id + '</td>';
+                //Name of each table as link to reveal corresponding table
+                table += '<td onclick="createTable('+id+');" style="cursor:pointer">' + tblName[id] + '</td>';
+            
+                //Count and show the number of rows in each table
+                for (var row_index in rows[0].values) {
+                    table += '<td>' + rows[0].values[row_index][col_index] + '</td>';
+                }
+                id++;
+            }
         
-    }
-    table += '</tbody>';
-    //table += '</table>';
-    document.getElementById("check").innerHTML = table; 
-    
+            table += '</tr>';
+        
+        }
+        table += '</tbody>';
+        document.getElementById("check").innerHTML = table;   
     }
     catch(e) {
         document.getElementById("check").innerHTML = "No tables in database";  
@@ -144,8 +102,8 @@ function execute()
     //Get table names from database
     var text = document.getElementById("text").value;
     
-     try {
-         //Execute query and store into variable query_results
+    try {
+        //Execute query and store into variable query_results
         var query_results = db.exec(text);
         //console.log(query_results);
         //Split Query into words
@@ -158,52 +116,53 @@ function execute()
 
        //Store results into a table and display it
         var table_string = '<div class="table-responsive">';
+        
         if (query_results) {
             if (text.trim().length>0) {
-            if (word0.toUpperCase() == 'SELECT') {
+                if (word0.toUpperCase() == 'SELECT') {
  
-                //Remove ; character from string
-                var string = text.replace(';','');
-                 
-                //console.log("String is: "+string);
+                    //Remove ; character from string
+                    var string = text.replace(';','');
+                    
+                    //console.log("String is: "+string);
 
-                //Register index of the word FROM
-                var n = string.toUpperCase().indexOf("FROM");
+                    //Register index of the word FROM
+                    var n = string.toUpperCase().indexOf("FROM");
 
-                //Get length of string
-                var length = string.length;
+                    //Get length of string
+                    var length = string.length;
 
-                //Get new substring after the word FROM
-                var newString = string.substring(n+5,length);
+                    //Get new substring after the word FROM
+                    var newString = string.substring(n+5,length);
 
-                //console.log("New String is "+newString);
+                    //console.log("New String is "+newString);
 
-                //console.log(n);
+                    //console.log(n);
 
-                //Split new substring into words
-                var new_word = newString.split(' ');
-                //Get first of the new string
-                var word3 = new_word[0];
+                    //Split new substring into words
+                    var new_word = newString.split(' ');
+                    //Get first of the new string
+                    var word3 = new_word[0];
 
-                //console.log(word3);
+                    //console.log(word3);
 
-                table_string += '<table class="table">';
-                table_string += '<tr>';
+                    table_string += '<table class="table">';
+                    table_string += '<tr>';
 
-            for (var index in query_results[0].columns) {
-                table_string += '<th class="text-capitalize">' + query_results[0].columns[index] + '</th>';
-            } 
-            table_string += '</tr>';
-            for (var row_index in query_results[0].values) {
-                table_string += '<tr>';
-                for (var col_index in query_results[0].values[row_index]) {
-                    table_string += '<td>' + query_results[0].values[row_index][col_index] + '</td>';
-                }
+                for (var index in query_results[0].columns) {
+                    table_string += '<th class="text-capitalize">' + query_results[0].columns[index] + '</th>';
+                } 
                 table_string += '</tr>';
-            }
-            table_string += '</table>';
-            
-            }
+                for (var row_index in query_results[0].values) {
+                    table_string += '<tr>';
+                    for (var col_index in query_results[0].values[row_index]) {
+                        table_string += '<td>' + query_results[0].values[row_index][col_index] + '</td>';
+                    }
+                    table_string += '</tr>';
+                }
+                table_string += '</table>';
+                
+                }
                 else {
                     if (word0.toUpperCase() == 'CREATE') {
                         table_string += 'Table '+word2+' Successfully Created';
@@ -229,17 +188,14 @@ function execute()
             else {
                 table_string += "Empty Query";
             }
-        
-    
-    }
-       
+        }
         table_string += '</div>';
         //alert(table_string);
         document.getElementById("demo").innerHTML = table_string;   
     }
     //Catch errors
-     catch(e) {
-         //If table is empty error
+    catch(e) {
+        //If table is empty error
         if (e.message == 'Cannot read property \'columns\' of undefined') {
             table_string += 'Table '+word3+' is empty'; 
             document.getElementById("demo").innerHTML = table_string; 
@@ -248,7 +204,7 @@ function execute()
         else {
             document.getElementById("demo").innerHTML = e.message;
         }
-     }
+    }
     //console.log(text);
 }
 
