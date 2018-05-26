@@ -32,7 +32,7 @@
               <p id="demo" style="width:70%;"></p>  
           </div>
           <div class="col-6">
-            <table id="check" class="table table-bordered table-hover table-dark"></table>
+            <table id="check" class="display" style="cursor:pointer"></table>
             <!-- <table id="example" class="display" style="width:70%"></table> -->
             	
       
@@ -40,22 +40,6 @@
         </div>
         <table id="example" class="display" width="100%"></table>
       </div>
-      <script>
- 
- 
-$(document).ready(function() {
-    $('#example').DataTable( {
-        data: dataSet,
-        columns: [
-            { title: "Name" },
-            { title: "Position" },
-            { title: "Office" },
-            { title: "Extn." },
-            { title: "Start date" },
-            { title: "Salary" }
-        ]
-    } );
-} );
-      </script>
+
 </body>
 </html>
