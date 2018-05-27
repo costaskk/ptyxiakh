@@ -21,7 +21,7 @@ function execute()
 
        //Store results into a table and display it
         
-
+       var table_string = '<div class="table-responsive">';
         if (query_results) {
             if (text.trim().length>0) {
                 if (word0.toUpperCase() == 'SELECT') {
@@ -94,6 +94,7 @@ function execute()
                 //         } );
                 //     }
                 // } ); 
+                    table_string += '</table>';
                 }
                 
                 else {
@@ -122,7 +123,7 @@ function execute()
                 table_string += "Empty Query";
             }
         }
-          table_string += '</table>';
+        table_string += "</div>";
         //alert(table_string);
         document.getElementById("tableView").innerHTML = table_string; 
     }
