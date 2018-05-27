@@ -1,34 +1,7 @@
-//Import sql.js library
-import sql from 'sql.js';
+import {db} from './initializeDB';
 
-
-
-import 'datatables.net-bs4';
-import 'datatables.net-autofill-bs4';
-import 'datatables.net-buttons-bs4';
-
-//import 'datatables.net-colreorder-bs4';
-
-import dt from 'datatables.net';
-
-//import 'datatables.net-autofill';
-
-//Import bootstrap
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-// // or sql = window.SQL if you are in a browser
-
-import {db} from './js/initializeDB';
-
-//import {tableList} from './js/tableList';
-
-
-//Create global list of tables
-//var test = new Array();
-
-//var tblName = new Array();
 import $ from 'jquery';
-//import { selectTableFromList } from './selectTableFromList';
+import { selectTableFromList } from './selectTableFromList';
 window.jQuery = $;
 window.$ = $;
 
@@ -71,14 +44,10 @@ function tableList() {
     }
 }
 
-import {execute} from './js/executeQuery';
-
-import {selectTableFromList} from './js/selectTableFromList';
 //Make function global
 window.tableList = tableList;
 
 //Run function tableList on pageload
 window.onload = tableList;
 
-// // // Export the database to an Uint8Array containing the SQLite database file
-var binaryArray = db.export();
+export {tableList};
