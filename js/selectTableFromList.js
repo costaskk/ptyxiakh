@@ -24,7 +24,7 @@ function selectTableFromList(name) {
     }
     table_select += '</table>';
     //table_select += '</div>';  
-    document.getElementById("tableView").innerHTML = table_select;   
+    document.getElementById("demo").innerHTML = table_select;   
     // var dataSet = [];
     //             var columns = [];
     //             var queryColumns = query_results[0].columns;

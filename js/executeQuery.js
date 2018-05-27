@@ -65,7 +65,7 @@ function execute()
                     }
                     table_string += '</tr>';
                 }
-                //table_string += '</table>';
+                table_string += '</table>';
                 // var dataSet2 = [];
                 // var columns = [];
                 // var queryColumns = query_results[0].columns;
@@ -94,7 +94,7 @@ function execute()
                 //         } );
                 //     }
                 // } ); 
-                    table_string += '</table>';
+                    //table_string += '</table>';
                 }
                 
                 else {
@@ -125,18 +125,18 @@ function execute()
         }
         table_string += "</div>";
         //alert(table_string);
-        document.getElementById("tableView").innerHTML = table_string; 
+        document.getElementById("demo").innerHTML = table_string; 
     }
     //Catch errors
     catch(e) {
         //If table is empty error
         if (e.message == 'Cannot read property \'columns\' of undefined') {
             var table_string = 'Table '+word3+' is empty'; 
-            document.getElementById("tableView").innerHTML = table_string; 
+            document.getElementById("demo").innerHTML = table_string; 
         }
         //Other errors
         else {
-            document.getElementById("tableView").innerHTML = e.message;
+            document.getElementById("demo").innerHTML = e.message;
         }
     }
     

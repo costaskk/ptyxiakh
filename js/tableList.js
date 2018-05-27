@@ -1,12 +1,12 @@
 import {db} from './initializeDB';
 
-import $ from 'jquery';
 import { selectTableFromList } from './selectTableFromList';
+import $ from 'jquery';
 window.jQuery = $;
 window.$ = $;
 
 //Function to show list of tables in our database
-function tableList() {
+function check() {
     var schema = "select name from sqlite_master where type='table';";
 
     db.run(schema);
@@ -26,13 +26,13 @@ function tableList() {
         }
  
         $(document).ready(function() {
-            if (!$.fn.DataTable.isDataTable('#tableList')) {
-                var table = $('#tableList').DataTable( {
+            if (!$.fn.DataTable.isDataTable('#check')) {
+                var table = $('#check').DataTable( {
                     data: dataSet,
                     columns: columns
                 } );
 
-                $('#tableList tbody').on('click', 'tr', function () {          
+                $('#check tbody').on('click', 'tr', function () {          
                     var data = table.row(this).data();
                     selectTableFromList(data[0]);
                 });
@@ -40,14 +40,14 @@ function tableList() {
         } ); 
     }
     catch(e) {
-        document.getElementById("tableList").innerHTML = "No tables in database";  
+        document.getElementById("check").innerHTML = "No tables in database";  
     }
 }
 
 //Make function global
-window.tableList = tableList;
+window.check = check;
 
-//Run function tableList on pageload
-window.onload = tableList;
+//Run function check on pageload
+window.onload = check;
 
-export {tableList};
+export {check};
