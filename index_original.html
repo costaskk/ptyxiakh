@@ -7,11 +7,9 @@
   <script src="bundle.js"></script> 
   <style>
   td a{width:100%; display:block}
-
   .click a {
   display: block;
 }
-
   </style>
  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 
@@ -29,7 +27,7 @@
               <input type="text" id="text" class="form-control"></p>
               <button type="button" id="execute" class="btn btn-success" onclick="execute(); check();">Execute</button>
               <br/><br/>
-              <p id="demo"></p>  
+              <p id="demo" style="width:70%;"></p>  
           </div>
           <div class="col-6">
             <table id="check" class="display" style="cursor:pointer"></table>
@@ -38,7 +36,7 @@
       
           </div>
         </div>
-        <table id="example" class="table table-striped table-dark table-hover" width="100%"></table>
+        <table id="example" class="display" width="100%"></table>
       </div>
 
 </body>
