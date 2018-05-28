@@ -1,31 +1,52 @@
 import {db} from './initializeDB';
 
 import {tblName} from './tableList';
+
+import {execute} from './executeQuery';
+
 //Function to select table when its name is selected from the name link
 window.createTable = function(name) {
-    //document.getElementById("test").innerHTML = "Table Name is: " + tblName[1];
+
     var text = 'SELECT * FROM '+tblName[name]+';';
-    console.log(name);
+    
     var query_results = db.exec(text);
 
-    var table_select = '<div class="table-responsive">';
-    var table_select = '<table class="table table-striped table-dark">';
-    table_select += '<tr>';
+    //Datatable Code
+    var columns = [];
+    var dataSet = [];
 
-    for (var index in query_results[0].columns) {
-        table_select += '<th>' + query_results[0].columns[index] + '</th>';
-    } 
-    table_select += '</tr>';
-    for (var row_index in query_results[0].values) {
-        table_select += '<tr>';
-        for (var col_index in query_results[0].values[row_index]) {
-            table_select += '<td>' + query_results[0].values[row_index][col_index] + '</td>';
-        }
-        table_select += '</tr>';
+    var queryColumns = query_results[0].columns;
+    var queryResults = query_results[0].values;
+
+    for (var index in queryColumns) {
+        var tableName = queryColumns[index];
+        columns.push({title: tableName});
     }
-    table_select += '</table>';
-    table_select += '</div>';  
-    document.getElementById("demo").innerHTML = table_select;   
+    
+    for (var row_index in queryResults) {
+        dataSet.push(queryResults[row_index]);
+    }
+
+    $(document).ready(function() {
+        if ( $.fn.DataTable.isDataTable('#demo.display') ) {
+            $('#demo.display').DataTable().destroy();
+        }
+        var table = $('#demo.display').DataTable( {
+            data: dataSet,
+            columns: columns,
+            destroy : true
+            //"bDestroy": true
+        } );
+    } );
+
+    $('#check').click(function(){
+        var table = $('#demo.display').DataTable( {
+            data: dataSet,
+            columns: columns,
+            destroy : true
+            //"bDestroy": true
+        } );
+    } );
 }
 
 export{createTable};

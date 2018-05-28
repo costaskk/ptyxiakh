@@ -1,5 +1,7 @@
 import {db} from './initializeDB';
 
+import {createTable} from './selectTableFromList';
+
 //Execute queries when the button is pressed
 window.execute = function()
 {
@@ -19,9 +21,10 @@ window.execute = function()
         var word2 = words[2];
 
        //Store results into a table and display it
-        var table_string = '<div class="table-responsive">';
+        
 
         if (query_results) {
+            var table_string;
             if (text.trim().length>0) {
                 if (word0.toUpperCase() == 'SELECT') {
  
@@ -39,32 +42,53 @@ window.execute = function()
                     //Get new substring after the word FROM
                     var newString = string.substring(n+5,length);
 
-                    //console.log("New String is "+newString);
-
-                    //console.log(n);
-
                     //Split new substring into words
                     var new_word = newString.split(' ');
                     //Get first of the new string
                     var word3 = new_word[0];
 
-                    //console.log(word3);
+                    //Datatable Code
+                    var columns = [];
+                    var dataSet = [];
 
-                    table_string += '<table class="table">';
-                    table_string += '<tr>';
+                    var queryColumns = query_results[0].columns;
+                    var queryResults = query_results[0].values;
 
-                for (var index in query_results[0].columns) {
-                    table_string += '<th class="text-capitalize">' + query_results[0].columns[index] + '</th>';
-                } 
-                table_string += '</tr>';
-                for (var row_index in query_results[0].values) {
-                    table_string += '<tr>';
-                    for (var col_index in query_results[0].values[row_index]) {
-                        table_string += '<td>' + query_results[0].values[row_index][col_index] + '</td>';
+                    for (var index in queryColumns) {
+                        var tableName = queryColumns[index];
+                        columns.push({title: tableName});
                     }
-                    table_string += '</tr>';
-                }
-                table_string += '</table>';
+                    
+                    for (var row_index in queryResults) {
+                        dataSet.push(queryResults[row_index]);
+                    }
+
+                    $('#execute').click(function(){
+                        var table = $('#example.display').DataTable( {
+                            data: dataSet,
+                            columns: columns,
+                            destroy : true,
+                            "bDestroy": true
+                        } );
+                    } );
+
+                   
+
+                //     table_string += '<table class="table">';
+                //     table_string += '<tr>';
+
+                // for (var index in query_results[0].columns) {
+                //     table_string += '<th class="text-capitalize">' + query_results[0].columns[index] + '</th>';
+                // } 
+                // table_string += '</tr>';
+                // for (var row_index in query_results[0].values) {
+                //     table_string += '<tr>';
+                //     for (var col_index in query_results[0].values[row_index]) {
+                //         table_string += '<td>' + query_results[0].values[row_index][col_index] + '</td>';
+                //     }
+                //     table_string += '</tr>';
+                // }
+                // table_string += '</table>';
                 
                 }
                 else {
@@ -86,16 +110,17 @@ window.execute = function()
                     else {
                         table_string += 'Query Success';
                     }
-                    
+                    document.getElementById("feedback").innerHTML = table_string;  
                 }
             }
             else {
                 table_string += "Empty Query";
+                document.getElementById("feedback").innerHTML = table_string;
             }
         }
-        table_string += '</div>';
+        
         //alert(table_string);
-        document.getElementById("demo").innerHTML = table_string;   
+         
     }
     //Catch errors
     catch(e) {

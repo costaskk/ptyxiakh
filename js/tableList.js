@@ -16,7 +16,31 @@ window.check = function() {
     try {
         var schema_results = db.exec(schema);
         //id=0;
+        //Datatable Code
+// var dataSet = [];
+//         var columns = [{title: 'Table Name'}, {title: 'Number of Entries'}];
+//         var schemaTables = schema_results[0].values;
 
+//         for (var index in schemaTables) {
+//             var tableName = schemaTables[index][0];
+//             var numberOfEntries = db.exec("SELECT COUNT() FROM " + tableName + ";")[0].values;
+
+//             dataSet.push([tableName, numberOfEntries]);
+//         }
+ 
+//         $(document).ready(function() {
+//             if (!$.fn.DataTable.isDataTable('#check')) {
+//                 var table = $('#check').DataTable( {
+//                     data: dataSet,
+//                     columns: columns
+//                 } );
+
+//                 $('#check tbody').on('click', 'tr', function () {          
+//                     var data = table.row(this).data();
+//                     createTable(data[0]);
+//                 });
+//             }
+//         } ); 
         var table = '<thead>';
         table += '<tr>';
 
@@ -71,28 +95,3 @@ export{tblName};
 export{check};
 
 
-// Datatable Code
-// var dataSet = [];
-//         var columns = [{title: 'Table Name'}, {title: 'Number of Entries'}];
-//         var schemaTables = schema_results[0].values;
-
-//         for (var index in schemaTables) {
-//             var tableName = schemaTables[index][0];
-//             var numberOfEntries = db.exec("SELECT COUNT() FROM " + tableName + ";")[0].values;
-
-//             dataSet.push([tableName, numberOfEntries]);
-//         }
- 
-//         $(document).ready(function() {
-//             if (!$.fn.DataTable.isDataTable('#check')) {
-//                 var table = $('#check').DataTable( {
-//                     data: dataSet,
-//                     columns: columns
-//                 } );
-
-//                 $('#check tbody').on('click', 'tr', function () {          
-//                     var data = table.row(this).data();
-//                     createTable(data[0]);
-//                 });
-//             }
-//         } ); 
