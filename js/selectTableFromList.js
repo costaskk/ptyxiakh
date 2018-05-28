@@ -1,13 +1,10 @@
 import {db} from './initializeDB';
-
-import {tblName} from './tableList';
-
 import {execute} from './executeQuery';
 
 //Function to select table when its name is selected from the name link
 window.createTable = function(name) {
 
-    var text = 'SELECT * FROM '+tblName[name]+';';
+    var text = 'SELECT * FROM '+name+';';
     
     var query_results = db.exec(text);
 
@@ -27,26 +24,16 @@ window.createTable = function(name) {
         dataSet.push(queryResults[row_index]);
     }
 
-    $(document).ready(function() {
-        if ( $.fn.DataTable.isDataTable('#demo.display') ) {
-            $('#demo.display').DataTable().destroy();
-        }
-        var table = $('#demo.display').DataTable( {
-            data: dataSet,
-            columns: columns,
-            destroy : true
-            //"bDestroy": true
-        } );
-    } );
+    if ($.fn.DataTable.isDataTable('#demo')) {
+        $('#demo').DataTable().destroy();
+        $('#demo').empty();
+    };
 
-    $('#check').click(function(){
-        var table = $('#demo.display').DataTable( {
-            data: dataSet,
-            columns: columns,
-            destroy : true
-            //"bDestroy": true
-        } );
-    } );
+    $('#demo').DataTable({
+        data: dataSet,
+        columns: columns,
+        destroy : true
+    });
 }
 
 export{createTable};

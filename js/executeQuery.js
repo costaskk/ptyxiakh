@@ -1,6 +1,6 @@
 import {db} from './initializeDB';
-
 import {createTable} from './selectTableFromList';
+import {submitEnter} from './submitEnter';
 
 //Execute queries when the button is pressed
 window.execute = function()
@@ -24,7 +24,7 @@ window.execute = function()
         
 
         if (query_results) {
-            var table_string;
+            
             if (text.trim().length>0) {
                 if (word0.toUpperCase() == 'SELECT') {
  
@@ -63,35 +63,21 @@ window.execute = function()
                         dataSet.push(queryResults[row_index]);
                     }
 
-                    $('#execute').click(function(){
-                        var table = $('#example.display').DataTable( {
-                            data: dataSet,
-                            columns: columns,
-                            destroy : true,
-                            "bDestroy": true
-                        } );
+                    var table;
+                    
+                    if ($.fn.DataTable.isDataTable('#demo')) {
+                        $('#demo').DataTable().destroy();
+                        $('#demo').empty();
+                    };
+
+                    table = $('#demo').DataTable( {
+                        data: dataSet,
+                        columns: columns,
+                        destroy : true
                     } );
-
-                   
-
-                //     table_string += '<table class="table">';
-                //     table_string += '<tr>';
-
-                // for (var index in query_results[0].columns) {
-                //     table_string += '<th class="text-capitalize">' + query_results[0].columns[index] + '</th>';
-                // } 
-                // table_string += '</tr>';
-                // for (var row_index in query_results[0].values) {
-                //     table_string += '<tr>';
-                //     for (var col_index in query_results[0].values[row_index]) {
-                //         table_string += '<td>' + query_results[0].values[row_index][col_index] + '</td>';
-                //     }
-                //     table_string += '</tr>';
-                // }
-                // table_string += '</table>';
-                
                 }
                 else {
+                    var table_string = "<div align='center'>";
                     if (word0.toUpperCase() == 'CREATE') {
                         table_string += 'Table '+word2+' Successfully Created';
                     }
@@ -110,34 +96,28 @@ window.execute = function()
                     else {
                         table_string += 'Query Success';
                     }
+                    table_string += "</div>";
                     document.getElementById("feedback").innerHTML = table_string;  
                 }
             }
             else {
-                table_string += "Empty Query";
+                var table_string = "Empty Query";
                 document.getElementById("feedback").innerHTML = table_string;
             }
         }
-        
-        //alert(table_string);
-         
     }
     //Catch errors
     catch(e) {
         //If table is empty error
         if (e.message == 'Cannot read property \'columns\' of undefined') {
-            table_string += 'Table '+word3+' is empty'; 
-            document.getElementById("demo").innerHTML = table_string; 
+            var table_string = 'Table '+word3+' is empty'; 
+            document.getElementById("feedback").innerHTML = table_string; 
         }
         //Other errors
         else {
-            document.getElementById("demo").innerHTML = e.message;
+            document.getElementById("feedback").innerHTML = e.message;
         }
     }
-    //console.log(text);
 }
-
-//Global function to execute queries
-//window.execute = execute;
 
 export{execute};
