@@ -1,22 +1,17 @@
-//Import sql.js library
-import sql from 'sql.js';
-
-import $ from 'jquery';
-window.jQuery = $;
-window.$ = $;
-
-import 'datatables.net-bs4';
-import 'datatables.net-autofill-bs4';
-import 'datatables.net-buttons-bs4';
-import dt from 'datatables.net';
-
+//Import jquery
+window.$ = window.jQuery = require('jquery');
+require("jquery-mousewheel");
+require('malihu-custom-scrollbar-plugin');
+require('bootstrap/dist/css/bootstrap.css');
+//Import font awesome
+import 'font-awesome/css/font-awesome.css';
 //Import bootstrap
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap';
+//Import Datatables
+import dt from 'datatables.net';
+import 'datatables.net-dt/css/jquery.datatables.css';
+//Import js files
 import {db} from './js/initializeDB';
 import {check} from './js/tableList';
 import {execute} from './js/executeQuery';
 import {createTable} from './js/selectTableFromList';
-
-
-// // // Export the database to an Uint8Array containing the SQLite database file
-var binaryArray = db.export();

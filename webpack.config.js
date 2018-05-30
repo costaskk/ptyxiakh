@@ -1,35 +1,60 @@
-var HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
-
-const HappyPack = require('happypack');
-
-//const webpack = require('webpack');
+const webpack = require('webpack');
 
 module.exports = {
     entry: './index.js',
     output: {
-      filename: 'bundle.js'
+        filename: 'bundle.js'
     },
-    module: {
+	module: {
         rules: [
-          {
-            test: /.js$/,
-            use: ['happypack/loader'],
-            exclude: /node_modules/
-          },
-          {
-            test: /\.css$/,
-            use: ['style-loader', 'css-loader']
-          }
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        cacheDirectory: true
+                    }
+                }
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                ]
+            },
+            {
+                test: /\.(png|jpg|jpeg|gif|ico|svg)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name]-[hash:6].[ext]'
+                        },
+                    }
+                ]
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name]-[hash:6].[ext]'
+                        },
+                    }
+                ]
+            }
         ]
     },
     node: {
       fs: 'empty'
     },
-    plugins: [
-      new HardSourceWebpackPlugin(),
-      new HappyPack({
-        // 3) re-add the loaders you replaced above in #1:
-        loaders: [ 'babel-loader?presets[]=env' ]
-      })
+	plugins: [
+        new webpack.ProvidePlugin({
+            jQuery: 'jquery',
+            $: 'jquery'
+        })
     ]
-  };
+}

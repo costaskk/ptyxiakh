@@ -2,10 +2,6 @@ import {db} from './initializeDB';
 import {createTable} from './selectTableFromList';
 import {executeTable} from './executeQuery';
 
-import $ from 'jquery';
-window.jQuery = $;
-window.$ = $;
-
 //Function to show list of tables in our database
 window.check = function() {
     var schema = "select name from sqlite_master where type='table';";
