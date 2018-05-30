@@ -14,5 +14,5 @@ Enter <code>npm run server</code>. That's it, the program will automatically ope
 <b>To add to the project:</b>
 
 After each change in the code, you need to run <code>npm run build</code> for the project to install the changes.  
-Alternatively you can run <code>npm run watch</code> which will automatically build any new changes each time you save any file.
+Alternatively you can run <code>npm run watch</code> which will automatically build any new changes each time you save any file.  
 Having server open with <code>npm run server</code> whilst doing changes has the same functionality.
