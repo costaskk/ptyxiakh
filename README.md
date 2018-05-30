@@ -1,6 +1,6 @@
 # Project
 ----------------------------------------------------
-<b><u>During first use:</u></b>
+<b><ul>During first use:</ul></b>
 
 First you need to have installed node.js and npm to your pc from <a href="https://nodejs.org/en/">here</a>  
 After that, download the project to your disk.  
