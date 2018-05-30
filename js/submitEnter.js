@@ -10,7 +10,9 @@ window.submitEnter = function() {
     // Number 13 is the "Enter" key on the keyboard
 	if (event.keyCode === 13) {
 		// Trigger the button element with a click
-		document.getElementById("execute").click();
+        document.getElementById("execute").click();
+        //Remove text from textarea after submit
+        document.getElementById('text').value='';
 	}
 });
 }

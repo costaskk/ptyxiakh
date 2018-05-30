@@ -24,7 +24,8 @@ window.execute = function()
         
 
         if (query_results) {
-            
+            //Remove text from textarea after submit
+            document.getElementById('text').value='';
             if (text.trim().length>0) {
                 if (word0.toUpperCase() == 'SELECT') {
  
