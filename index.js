@@ -15,3 +15,12 @@ import {db} from './js/initializeDB';
 import {check} from './js/tableList';
 import {execute} from './js/executeQuery';
 import {createTable} from './js/selectTableFromList';
+
+
+var html; 
+$.get('menu.html', function(data) {
+    html=data;
+}).done(function(){
+    var menu = document.getElementById("content");
+    menu.insertAdjacentHTML("afterbegin", html);
+});
