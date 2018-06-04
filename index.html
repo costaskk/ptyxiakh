@@ -2,32 +2,50 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <title>JavaScript Example</title>
-    <style>
-    td a{width:100%; display:block}
-    .click a {
-    display: block;
-    }
-    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Collapsible sidebar using Bootstrap 3</title>
+    <!-- BEGIN TRACKJS -->
+    <script type="text/javascript">window._trackJs = { token: '6c61ffced48841259753ff1f9a3ece99' };</script>
+    <script type="text/javascript" src="https://cdn.trackjs.com/releases/current/tracker.js"></script>
+    <script>trackJs.track('ahoy trackjs!');</script>
+    <!-- END TRACKJS -->
+    <script src="dist/bundle.js"></script> 
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="src/style.css">
+ 
   </head>
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-6">
-          <h2><label for="text"><b>SQL code: </b></label></h2></p>
-          <input type="text" id="text" class="form-control"></p>
-          <button type="button" id="execute" class="btn btn-success" onclick="execute(); check();">Execute</button>
-          <br/><br/>
-          <p id="feedback"></p>
-          <table id="demo" class="display"></table>  
+    <div class="wrapper" id="wrapper">
+      <div id="content">
+        <div class="row align-items-start justify-content-center">
+          <div class="col-4">
+            <h2><label for="text"><b>SQL code: </b></label></h2></p>
+            <input type="text" id="text" class="form-control"></p>
+            <button type="button" id="execute" class="btn btn-success" onclick="execute(); check();">Execute</button>
+            <br/><br/>
+            <p id="feedback"></p>
+            <table id="demo" class="display"></table>  
+          </div>
+          <div class="col-4">
+            <table id="check" class="display" style="cursor:pointer"></table>
+          </div>
         </div>
-        <div class="col-6">
-          <i class="fa fa-thumbs-up"></i>
-          <table id="check" class="display" style="cursor:pointer"></table>
-        </div>
-      </div>
     </div>
-    <script src="bundle.js"></script> 
+  </div>
+    <script type="text/javascript">         
+      $(document).ready(function () {
+  $("#sidebar").mCustomScrollbar({
+      theme: "minimal"
+  });
+
+  $('#sidebarCollapse').on('click', function () {
+      $('#sidebar, #content').toggleClass('active');
+      $('.collapse.in').toggleClass('in');
+      $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+  });
+});
+      </script>
   </body>
 </html>

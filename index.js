@@ -15,7 +15,9 @@ import {db} from './js/initializeDB';
 import {check} from './js/tableList';
 import {execute} from './js/executeQuery';
 import {createTable} from './js/selectTableFromList';
+import LogRocket from 'logrocket';
 
+LogRocket.init('lv7quk/ptyxiakh');
 
 var html; 
 $.get('menu.html', function(data) {

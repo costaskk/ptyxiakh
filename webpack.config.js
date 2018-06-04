@@ -1,9 +1,11 @@
 const webpack = require('webpack');
 
+const path = require('path');
+
 module.exports = {
     entry: './index.js',
     output: {
-        filename: 'bundle.js'
+        filename: 'dist/bundle.js',
     },
 	module: {
         rules: [
