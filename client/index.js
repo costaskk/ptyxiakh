@@ -3,8 +3,6 @@ window.$ = window.jQuery = require('jquery');
 require("jquery-mousewheel");
 require('malihu-custom-scrollbar-plugin');
 require('bootstrap/dist/css/bootstrap.css');
-//Import font awesome
-import 'font-awesome/css/font-awesome.css';
 //Import bootstrap
 import 'bootstrap';
 //Import Datatables

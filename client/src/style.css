@@ -2,7 +2,7 @@
     DEMO STYLE
 */
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-
+@import "https://use.fontawesome.com/releases/v5.0.13/css/all.css";
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -100,15 +100,17 @@ a[data-toggle="collapse"] {
 }
 
 a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
-    content: '\f107';
+    font-family: Font Awesome\ 5 Free;
+    content: '\f358';
     display: block;
     position: absolute;
     right: 20px;
-    font-family: Fontawesome !important;
-    font-size: 0.6em;
+    
+    font-size: 1em;
 }
 a[aria-expanded="true"]::before {
-    content: '\f106';
+    
+    content: '\f35b';
 }
 
 

@@ -1,0 +1,50 @@
+{
+  "name": "new_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --progress -p",
+    "watch": "webpack --progress --watch",
+    "server": "webpack-dev-server --open"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-lodash": "^3.3.2",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^0.28.11",
+    "file-loader": "^1.1.11",
+    "jquery": "^3.3.1",
+    "lodash-webpack-plugin": "^0.11.5",
+    "popper.js": "^1.14.3",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.10.2",
+    "webpack-cli": "^2.1.4",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.8",
+    "bootstrap": "^4.1.1",
+    "datatables.net": "^1.10.16",
+    "datatables.net-autofill-bs4": "^2.2.2",
+    "datatables.net-autofill-zf": "^2.2.2",
+    "datatables.net-bs4": "^1.10.16",
+    "datatables.net-buttons-bs4": "^1.5.1",
+    "datatables.net-buttons-zf": "^1.5.1",
+    "datatables.net-colreorder-bs4": "^1.4.1",
+    "datatables.net-colreorder-zf": "^1.4.1",
+    "datatables.net-dt": "^1.10.16",
+    "datatables.net-select-bs4": "^1.2.5",
+    "datatables.net-select-zf": "^1.2.5",
+    "datatables.net-zf": "^1.10.16",
+    "jquery-mousewheel": "^3.1.13",
+    "lodash": "^4.17.10",
+    "logrocket": "^0.6.12",
+    "malihu-custom-scrollbar-plugin": "^3.1.5",
+    "sql.js": "^0.5.0"
+  }
+}
