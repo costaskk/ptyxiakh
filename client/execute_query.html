@@ -1,0 +1,55 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    
+   
+
+    <script src="dist/bundle.js"></script> 
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="src/style.css">
+
+  </head>
+  <body>
+    <div class="wrapper" id="wrapper">
+      <div id="content">
+        <div class="row align-items-start justify-content-center">
+          <div class="col-4">
+              
+            <h2><label for="text"><b>SQL code:</b></label></h2></p>
+            <input type="text" id="text" class="form-control"></p>
+            <button type="button" id="execute" class="btn btn-success" onclick="execute(); check();">Execute</button>
+            <br/><br/>
+            <p id="feedback"></p>
+            <table id="demo" class="display"></table>  
+          </div>
+          <div class="col-4">
+            <table id="check" class="display" style="cursor:pointer"></table>
+          </div>
+        </div>
+    </div>
+  </div>
+    <script type="text/javascript">         
+      $(document).ready(function () {
+  $("#sidebar").mCustomScrollbar({
+      theme: "minimal"
+  });
+
+  $('#sidebarCollapse').on('click', function () {
+      $('#sidebar, #content').toggleClass('active');
+      $('.collapse.in').toggleClass('in');
+      $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+  });
+});
+      </script>
+          <script src="src/angular/angular.js"></script>
+          <script src="src/angular-route/angular-route.js"></script>
+          
+       
+        
+  </body>
+</html>

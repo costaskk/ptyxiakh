@@ -21,3 +21,27 @@ $.get('menu.html', function(data) {
     var menu = document.getElementById("content");
     menu.insertAdjacentHTML("afterbegin", html);
 });
+
+var json;
+$.get('/menu_items', function(data) {
+    json = data;
+}).done(function(){
+    var insert="";
+    for (var i in json) {
+        insert += "<li><a href="+json[i].link+">"+json[i].name+"</a></li>"
+    }
+    var add = document.getElementById("about");
+    add.insertAdjacentHTML("beforebegin", insert);
+});
+
+var contents;
+$.get('/texts', function(data) {
+    contents = data;
+}).done(function(){
+    var test="";
+    for (var i in contents) {
+        test += "<h2>"+contents[i].title+"</h2>"+contents[i].text+"<div class='line'></div>";
+    }
+    var elements = document.getElementById("content-text");
+    elements.insertAdjacentHTML("beforeend", test);
+});
