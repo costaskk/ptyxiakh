@@ -11,11 +11,13 @@ window.execute = function()
     try {
         //Execute query and store into variable query_results
         var query_results = db.exec(text);
-        //console.log(query_results);
-        //Split Query into words
+        
+        //Remove ; from end of user query, if it exists
         if (text.slice(-1)==';') {
             text=text.slice(0,-1);
         }
+
+        //Split Query into words
         var words = text.split(' ');
 
         //First three words of query
