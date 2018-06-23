@@ -28,7 +28,7 @@ window.execute = function()
             document.getElementById('text').value='';
             if (text.trim().length>0) {
                 if (word0.toUpperCase() == 'SELECT') {
- 
+                    $('#demo').show();
                     //Remove ; character from string
                     var string = text.replace(';','');
                     
@@ -79,6 +79,7 @@ window.execute = function()
                 }
                 else {
                     var table_string = "<div align='center'>";
+                    $('#demo').hide();
                     if (word0.toUpperCase() == 'CREATE') {
                         table_string += 'Table '+word2+' Successfully Created';
                     }
@@ -102,6 +103,7 @@ window.execute = function()
                 }
             }
             else {
+                $('#demo').hide();
                 var table_string = "Empty Query";
                 document.getElementById("feedback").innerHTML = table_string;
             }
@@ -109,6 +111,7 @@ window.execute = function()
     }
     //Catch errors
     catch(e) {
+        $('#demo').hide();
         //If table is empty error
         if (e.message == 'Cannot read property \'columns\' of undefined') {
             var table_string = 'Table '+word3+' is empty'; 

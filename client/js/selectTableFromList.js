@@ -3,7 +3,7 @@ import {execute} from './executeQuery';
 
 //Function to select table when its name is selected from the name link
 window.createTable = function(name) {
-
+    $('#demo').show();
     var text = 'SELECT * FROM '+name+';';
     
     var query_results = db.exec(text);
