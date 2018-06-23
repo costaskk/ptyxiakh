@@ -13,6 +13,9 @@ window.execute = function()
         var query_results = db.exec(text);
         //console.log(query_results);
         //Split Query into words
+        if (text.slice(-1)==';') {
+            text=text.slice(0,-1);
+        }
         var words = text.split(' ');
 
         //First three words of query
