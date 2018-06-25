@@ -45,3 +45,39 @@ $.get('/texts', function(data) {
     var elements = document.getElementById("content-text");
     elements.insertAdjacentHTML("beforeend", test);
 });
+
+var overview;
+$.get('/texts-overview', function(data) {
+    overview = data;
+}).done(function(){
+    var test="";
+    for (var i in overview) {
+        test += "<h2>"+overview[i].title+"</h2>"+overview[i].text+"<div class='line'></div>";
+    }
+    var elements = document.getElementById("content-overview");
+    elements.insertAdjacentHTML("beforeend", test);
+});
+
+var commands;
+$.get('/texts-commands', function(data) {
+    commands = data;
+}).done(function(){
+    var test="";
+    for (var i in commands) {
+        test += "<h2>"+commands[i].title+"</h2>"+commands[i].text+"<div class='line'></div>";
+    }
+    var elements = document.getElementById("content-commands");
+    elements.insertAdjacentHTML("beforeend", test);
+});
+
+var commandsuse;
+$.get('/texts-commands-use', function(data) {
+    commandsuse = data;
+}).done(function(){
+    var test="";
+    for (var i in commandsuse) {
+        test += "<h2>"+commandsuse[i].title+"</h2>"+commandsuse[i].text+"<div class='line'></div>";
+    }
+    var elements = document.getElementById("content-commands-use");
+    elements.insertAdjacentHTML("beforeend", test);
+});

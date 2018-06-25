@@ -26,8 +26,6 @@ window.execute = function()
         var word2 = words[2];
 
        //Store results into a table and display it
-        
-
         if (query_results) {
             //Remove text from textarea after submit
             document.getElementById('text').value='';

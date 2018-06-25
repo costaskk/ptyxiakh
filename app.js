@@ -33,8 +33,30 @@ app.get('/menu_items', function (req, res){
     });
 });
 
+//Return Texts
 app.get('/texts', function (req, res){
-    db.collection("contents").find({}).toArray(function(err, result) {
+    db.collection("contents").find({category: "home"}).toArray(function(err, result) {
+        if (err) throw err;
+        res.json(result);
+    });
+});
+
+app.get('/texts-overview', function (req, res){
+    db.collection("contents").find({category: "overview"}).toArray(function(err, result) {
+        if (err) throw err;
+        res.json(result);
+    });
+});
+
+app.get('/texts-commands', function (req, res){
+    db.collection("contents").find({category: "commands"}).toArray(function(err, result) {
+        if (err) throw err;
+        res.json(result);
+    });
+});
+
+app.get('/texts-commands-use', function (req, res){
+    db.collection("contents").find({category: "commands-use"}).toArray(function(err, result) {
         if (err) throw err;
         res.json(result);
     });
@@ -46,6 +68,18 @@ app.get('/execute',function (req,res) {
 
 app.get('/home',function (req,res) { 
     res.sendFile(path.join(__dirname + '/client/index.html'));
+});
+
+app.get('/overview',function (req,res) { 
+    res.sendFile(path.join(__dirname + '/client/overview.html'));
+});
+
+app.get('/commands',function (req,res) { 
+    res.sendFile(path.join(__dirname + '/client/commands.html'));
+});
+
+app.get('/use',function (req,res) { 
+    res.sendFile(path.join(__dirname + '/client/commands-use.html'));
 });
 
 app.get('/',function (req,res) { 

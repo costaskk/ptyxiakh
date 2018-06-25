@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Collapsible sidebar using Bootstrap 3</title>
+        <script src="dist/bundle.js"></script>	
+        <!-- Our Custom CSS -->
+        <link rel="stylesheet" href="src/style.css">
+        <style>
+            .table {
+                width:50%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper" id="wrapper">
+             <!-- Page Content Holder -->
+             <div id="content">
+                 <div id="content-commands"></div>
+            </div>
+        </div>
+	
+        <script type="text/javascript">         
+        $(document).ready(function () {
+    $("#sidebar").mCustomScrollbar({
+        theme: "minimal"
+    });
+
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar, #content').toggleClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+});
+        </script>
+    </body>
+</html>
