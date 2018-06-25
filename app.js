@@ -71,15 +71,15 @@ app.get('/home',function (req,res) {
 });
 
 app.get('/overview',function (req,res) { 
-    res.sendFile(path.join(__dirname + '/client/overview.html'));
+    res.sendFile(path.join(__dirname + '/client/index.html'));
 });
 
 app.get('/commands',function (req,res) { 
-    res.sendFile(path.join(__dirname + '/client/commands.html'));
+    res.sendFile(path.join(__dirname + '/client/index.html'));
 });
 
 app.get('/use',function (req,res) { 
-    res.sendFile(path.join(__dirname + '/client/commands-use.html'));
+    res.sendFile(path.join(__dirname + '/client/index.html'));
 });
 
 app.get('/',function (req,res) { 

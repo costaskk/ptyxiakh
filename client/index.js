@@ -58,7 +58,7 @@ else if (location.pathname == '/overview') {
         for (var i in overview) {
             test += "<h2>"+overview[i].title+"</h2>"+overview[i].text+"<div class='line'></div>";
         }
-        var elements = document.getElementById("content-overview");
+        var elements = document.getElementById("content-text");
         elements.insertAdjacentHTML("beforeend", test);
     });
 }
@@ -71,7 +71,7 @@ else if (location.pathname == '/commands') {
         for (var i in commands) {
             test += "<h2>"+commands[i].title+"</h2>"+commands[i].text+"<div class='line'></div>";
         }
-        var elements = document.getElementById("content-commands");
+        var elements = document.getElementById("content-text");
         elements.insertAdjacentHTML("beforeend", test);
     });
 }
@@ -84,7 +84,8 @@ else if (location.pathname == '/use') {
         for (var i in commandsuse) {
             test += "<h2>"+commandsuse[i].title+"</h2>"+commandsuse[i].text+"<div class='line'></div>";
         }
-        var elements = document.getElementById("content-commands-use");
+        test += "<h3 align='center'>Test Some Commands Yourself!</h3><hr style='width:50%;'><div class='row align-items-start justify-content-center'><div class='col-4'><h2><label for='text'><b>SQL code:</b></label></h2></p><input type='text' id='text' class='form-control'></p><button type='button' id='execute' class='btn btn-success' onclick='execute(); check();'>Execute</button><br/><br/><p id='feedback'></p><table id='demo' class='display'></table></div><div class='col-4'><table id='check' class='display' style='cursor:pointer'></table></div></div>";
+        var elements = document.getElementById("content-text");
         elements.insertAdjacentHTML("beforeend", test);
     });
 }
