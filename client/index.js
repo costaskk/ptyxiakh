@@ -14,6 +14,8 @@ import {check} from './js/tableList';
 import {execute} from './js/executeQuery';
 import {createTable} from './js/selectTableFromList';
 
+
+
 var html; 
 $.get('menu.html', function(data) {
     html=data;
@@ -34,50 +36,55 @@ $.get('/menu_items', function(data) {
     add.insertAdjacentHTML("beforebegin", insert);
 });
 
-var contents;
-$.get('/texts', function(data) {
-    contents = data;
-}).done(function(){
-    var test="";
-    for (var i in contents) {
-        test += "<h2>"+contents[i].title+"</h2>"+contents[i].text+"<div class='line'></div>";
-    }
-    var elements = document.getElementById("content-text");
-    elements.insertAdjacentHTML("beforeend", test);
-});
-
-var overview;
-$.get('/texts-overview', function(data) {
-    overview = data;
-}).done(function(){
-    var test="";
-    for (var i in overview) {
-        test += "<h2>"+overview[i].title+"</h2>"+overview[i].text+"<div class='line'></div>";
-    }
-    var elements = document.getElementById("content-overview");
-    elements.insertAdjacentHTML("beforeend", test);
-});
-
-var commands;
-$.get('/texts-commands', function(data) {
-    commands = data;
-}).done(function(){
-    var test="";
-    for (var i in commands) {
-        test += "<h2>"+commands[i].title+"</h2>"+commands[i].text+"<div class='line'></div>";
-    }
-    var elements = document.getElementById("content-commands");
-    elements.insertAdjacentHTML("beforeend", test);
-});
-
-var commandsuse;
-$.get('/texts-commands-use', function(data) {
-    commandsuse = data;
-}).done(function(){
-    var test="";
-    for (var i in commandsuse) {
-        test += "<h2>"+commandsuse[i].title+"</h2>"+commandsuse[i].text+"<div class='line'></div>";
-    }
-    var elements = document.getElementById("content-commands-use");
-    elements.insertAdjacentHTML("beforeend", test);
-});
+if ((location.pathname == '/')||(location.pathname == '/home')||(location.pathname == '/#')) {
+    var contents;
+    $.get('/texts', function(data) {
+        contents = data;
+    }).done(function(){
+        var test="";
+        for (var i in contents) {
+            test += "<h2>"+contents[i].title+"</h2>"+contents[i].text+"<div class='line'></div>";
+        }
+        var elements = document.getElementById("content-text");
+        elements.insertAdjacentHTML("beforeend", test);
+    });
+}
+else if (location.pathname == '/overview') {
+    var overview;
+    $.get('/texts-overview', function(data) {
+        overview = data;
+    }).done(function(){
+        var test="";
+        for (var i in overview) {
+            test += "<h2>"+overview[i].title+"</h2>"+overview[i].text+"<div class='line'></div>";
+        }
+        var elements = document.getElementById("content-overview");
+        elements.insertAdjacentHTML("beforeend", test);
+    });
+}
+else if (location.pathname == '/commands') {
+    var commands;
+    $.get('/texts-commands', function(data) {
+        commands = data;
+    }).done(function(){
+        var test="";
+        for (var i in commands) {
+            test += "<h2>"+commands[i].title+"</h2>"+commands[i].text+"<div class='line'></div>";
+        }
+        var elements = document.getElementById("content-commands");
+        elements.insertAdjacentHTML("beforeend", test);
+    });
+}
+else if (location.pathname == '/use') {
+    var commandsuse;
+    $.get('/texts-commands-use', function(data) {
+        commandsuse = data;
+    }).done(function(){
+        var test="";
+        for (var i in commandsuse) {
+            test += "<h2>"+commandsuse[i].title+"</h2>"+commandsuse[i].text+"<div class='line'></div>";
+        }
+        var elements = document.getElementById("content-commands-use");
+        elements.insertAdjacentHTML("beforeend", test);
+    });
+}
