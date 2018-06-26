@@ -48,7 +48,7 @@ window.check = function() {
 }
 
 //Run function check on pageload
-$( document ).ready( check );
+window.onload = check ;
 
 export{check};
 

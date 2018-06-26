@@ -49,6 +49,7 @@ $.get('/menu_items', function(data) {
 
 var contents;
 var category = GetURLParameter('categories');
+
 if ((location.pathname == '/')||(location.pathname=='/#')||(location.pathname=='')) {
     $.get('/category=home', function(data) {
         contents = data;
@@ -64,12 +65,24 @@ if ((location.pathname == '/')||(location.pathname=='/#')||(location.pathname=='
 else if (location.pathname == '/categories='+category) {
     $.get('/category='+category, function(data) {
         contents = data;
-    }).done(function(){
+    }).always(function(){
         var test="";
+
         for (var i in contents) {
             test += "<h2>"+contents[i].title+"</h2>"+contents[i].text+"<div class='line'></div>";
         }
+
         var elements = document.getElementById("content");
         elements.insertAdjacentHTML("beforeend", test);
+
+        if (contents[i].hasExecuteQuery == 'true') {
+            var query; 
+            $.get('execute_query.html', function(data) {
+                query=data;
+            }).done(function(){
+                var exec = document.getElementById("content");
+                exec.insertAdjacentHTML("beforeend", query);
+            });
+        }      
     });
 }
