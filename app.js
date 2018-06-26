@@ -40,7 +40,6 @@ app.get('/category=:uid', function(req, res, next){
     });
 });
 
-
 app.get('/categories=:uid',function (req,res) { 
     res.sendFile(path.join(__dirname + '/client/index.html'));
 });

@@ -48,9 +48,21 @@ $.get('/menu_items', function(data) {
 });
 
 var contents;
-var first = GetURLParameter('categories');
-if (location.pathname == '/categories='+first) {
-    $.get('/category='+first, function(data) {
+var category = GetURLParameter('categories');
+if ((location.pathname == '/')||(location.pathname=='/#')||(location.pathname=='')) {
+    $.get('/category=home', function(data) {
+        contents = data;
+    }).done(function(){
+        var test="";
+        for (var i in contents) {
+            test += "<h2>"+contents[i].title+"</h2>"+contents[i].text+"<div class='line'></div>";
+        }
+        var elements = document.getElementById("content");
+        elements.insertAdjacentHTML("beforeend", test);
+    });
+}
+else if (location.pathname == '/categories='+category) {
+    $.get('/category='+category, function(data) {
         contents = data;
     }).done(function(){
         var test="";

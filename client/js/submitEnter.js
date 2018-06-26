@@ -5,15 +5,15 @@ window.submitEnter = function() {
     input.addEventListener("keyup", function(event) {
     // Cancel the default action, if needed
     event.preventDefault();
-	//Stop event from firing multiple times
-	event.stopImmediatePropagation();
+    //Stop event from firing multiple times
+    event.stopImmediatePropagation();
     // Number 13 is the "Enter" key on the keyboard
-	if (event.keyCode === 13) {
-		// Trigger the button element with a click
+    if (event.keyCode === 13) {
+        // Trigger the button element with a click
         document.getElementById("execute").click();
         //Remove text from textarea after submit
         document.getElementById('text').value='';
-	}
+    }
 });
 }
 
