@@ -34,7 +34,7 @@ app.get('/menu_items', function (req, res){
 });
 
 app.get('/category=:uid', function(req, res, next){
-    db.collection("contents").find({category: req.params.uid}).toArray(function(err, result) {
+    db.collection("contents").find({category: req.params.uid}).sort({order: 1}).toArray(function(err, result) {
         if (err) throw err;
         res.json(result);
     });

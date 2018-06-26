@@ -1,5 +1,6 @@
 window.submitEnter = function() {
-    if (document.getElementById("execute")){	
+    if (document.getElementById("execute")){
+        	
         // Get the input field
         var input = document.getElementById("text");
         // Execute a function when the user releases a key on the keyboard
@@ -20,5 +21,4 @@ window.submitEnter = function() {
 }
 
 window.onclick = submitEnter;
-
 export{submitEnter};

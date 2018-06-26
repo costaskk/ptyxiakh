@@ -75,13 +75,14 @@ else if (location.pathname == '/categories='+category) {
         var elements = document.getElementById("content");
         elements.insertAdjacentHTML("beforeend", test);
 
-        if (contents[i].hasExecuteQuery == 'true') {
+        if (contents[i].hasExecuteQuery == 'true') {    
             var query; 
             $.get('execute_query.html', function(data) {
                 query=data;
             }).done(function(){
                 var exec = document.getElementById("content");
                 exec.insertAdjacentHTML("beforeend", query);
+                check();
             });
         }      
     });
