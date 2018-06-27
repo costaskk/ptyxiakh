@@ -24,6 +24,7 @@ window.execute = function()
         var word0 = words[0];
         var word1 = words[1];
         var word2 = words[2];
+        var word4 = words[4];
 
        //Store results into a table and display it
         if (query_results) {
@@ -93,7 +94,12 @@ window.execute = function()
                         table_string += 'Entry Successfully deleted';
                     }
                     else if (word0.toUpperCase() == 'DROP') {
-                        table_string += 'Table '+word2+' Deleted';
+                        if (word2.toUpperCase() == 'IF') {
+                            table_string += 'Table '+word4+' Deleted';
+                        }
+                        else {
+                            table_string += 'Table '+word2+' Deleted';
+                        }
                     }
                     else if (word0.toUpperCase() == 'UPDATE') {
                         table_string += 'Table '+word1+' Updated';
