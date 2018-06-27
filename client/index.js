@@ -14,6 +14,7 @@ import {check} from './js/tableList';
 import {execute} from './js/executeQuery';
 import {createTable} from './js/selectTableFromList';
 
+//Function to get parameters of urls
 function GetURLParameter(sParam)
 {
     var sPageURL = (location.pathname+location.search).substring(1);
@@ -27,6 +28,8 @@ function GetURLParameter(sParam)
         }
     }
 }
+
+//Function to include menu.html in file
 var html; 
 $.get('menu.html', function(data) {
     html=data;
@@ -35,6 +38,7 @@ $.get('menu.html', function(data) {
     menu.insertAdjacentHTML("afterbegin", html);
 });
 
+//Function to fill menu with items from mongoDB retrieved in app.js
 var json;
 $.get('/menu_items', function(data) {
     json = data;
@@ -47,9 +51,15 @@ $.get('/menu_items', function(data) {
     add.insertAdjacentHTML("beforebegin", insert);
 });
 
-var contents;
+
+
+//Get url parameter of categories
 var category = GetURLParameter('categories');
 
+//Initiate var contents to store html data
+var contents;
+
+//If url is either null or ends in / or /# then return contents in category=home (The home page)
 if ((location.pathname == '/')||(location.pathname=='/#')||(location.pathname=='')) {
     $.get('/category=home', function(data) {
         contents = data;
@@ -62,26 +72,41 @@ if ((location.pathname == '/')||(location.pathname=='/#')||(location.pathname=='
         elements.insertAdjacentHTML("beforeend", test);
     });
 }
+//Else return page with corresponding category value
 else if (location.pathname == '/categories='+category) {
     $.get('/category='+category, function(data) {
         contents = data;
-    }).always(function(){
+    }).done(function(){
         var test="";
 
         for (var i in contents) {
             test += "<h2>"+contents[i].title+"</h2>"+contents[i].text+"<div class='line'></div>";
         }
-
+        
         var elements = document.getElementById("content");
         elements.insertAdjacentHTML("beforeend", test);
 
+        //Check if execute query is used, if yes then include execute_query.html which includes the query run
         if (contents[i].hasExecuteQuery == 'true') {    
-            var query; 
+            
+            //Fill query input with a default query stored in mongoDB
+            var queryInsert = contents[i].query;
+
+            //Initiate query variable to store html data
+            var query;
+
+            //Include execute_query.html in our page
             $.get('execute_query.html', function(data) {
                 query=data;
             }).done(function(){
+                //Insert execute_query.html elements into page
                 var exec = document.getElementById("content");
                 exec.insertAdjacentHTML("beforeend", query);
+
+                //After execute_query.html elements have been inserted insert default query to input with id text
+                document.getElementById("text").value= queryInsert;
+
+                //When page which includes execute_query.html loads, run function check() to create a table with a list of tables in sqlite
                 check();
             });
         }      
