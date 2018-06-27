@@ -16,7 +16,7 @@ var db = mongoose.connection;
 
 //Get menu items
 app.get('/menu_items', function (req, res){
-    db.collection("menu_items").find({}).toArray(function(err, result) {
+    db.collection("menu_items").find({}).sort({order: 1}).toArray(function(err, result) {
         if (err) throw err;
         res.json(result);
     });
