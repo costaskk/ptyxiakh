@@ -80,7 +80,7 @@ else if (location.pathname == '/categories='+category) {
         var test="";
 
         for (var i in contents) {
-            test += "<h2>"+contents[i].title+"</h2>"+contents[i].text+"<div class='line'></div>";
+            test += "<h1 align='center'>"+contents[i].header+"<h1><hr style='width:40%;'><br/><h2>"+contents[i].title+"</h2>"+contents[i].text+"<div class='line'></div>";
         }
         
         var elements = document.getElementById("content");
