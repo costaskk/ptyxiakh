@@ -20,7 +20,7 @@ window.execute = function()
         //Split Query into words
         var words = text.split(' ');
 
-        //First three words of query
+        //First four words of query
         var word0 = words[0];
         var word1 = words[1];
         var word2 = words[2];
@@ -32,7 +32,7 @@ window.execute = function()
             document.getElementById('text').value='';
             if (text.trim().length>0) {
                 if (word0.toUpperCase() == 'SELECT') {
-                    $('#demo').show();
+                    $('#queryResult').show();
                     //Remove ; character from string
                     var string = text.replace(';','');
                     
@@ -70,12 +70,12 @@ window.execute = function()
 
                     var table;
                     
-                    if ($.fn.DataTable.isDataTable('#demo')) {
-                        $('#demo').DataTable().destroy();
-                        $('#demo').empty();
+                    if ($.fn.DataTable.isDataTable('#queryResult')) {
+                        $('#queryResult').DataTable().destroy();
+                        $('#queryResult').empty();
                     };
 
-                    table = $('#demo').DataTable( {
+                    table = $('#queryResult').DataTable( {
                         data: dataSet,
                         columns: columns,
                         destroy : true
@@ -83,7 +83,7 @@ window.execute = function()
                 }
                 else {
                     var table_string = "<div align='center'>";
-                    $('#demo').hide();
+                    $('#queryResult').hide();
                     if (word0.toUpperCase() == 'CREATE') {
                         table_string += 'Table '+word2+' Successfully Created';
                     }
@@ -112,7 +112,7 @@ window.execute = function()
                 }
             }
             else {
-                $('#demo').hide();
+                $('#queryResult').hide();
                 var table_string = "Empty Query";
                 document.getElementById("feedback").innerHTML = table_string;
             }
@@ -120,7 +120,7 @@ window.execute = function()
     }
     //Catch errors
     catch(e) {
-        $('#demo').hide();
+        $('#queryResult').hide();
         //If table is empty error
         if (e.message == 'Cannot read property \'columns\' of undefined') {
             var table_string = 'Table '+word3+' is empty'; 

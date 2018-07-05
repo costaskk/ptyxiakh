@@ -10,7 +10,7 @@ import dt from 'datatables.net';
 import 'datatables.net-dt/css/jquery.datatables.css';
 //Import js files
 import {db} from './js/initializeDB';
-import {check} from './js/tableList';
+import {tableList} from './js/tableList';
 import {execute} from './js/executeQuery';
 import {createTable} from './js/selectTableFromList';
 
@@ -106,8 +106,8 @@ else if (location.pathname == '/categories='+category) {
                 //After execute_query.html elements have been inserted insert default query to input with id text
                 document.getElementById("text").value= queryInsert;
 
-                //When page which includes execute_query.html loads, run function check() to create a table with a list of tables in sqlite
-                check();
+                //When page which includes execute_query.html loads, run function tableList() to create a table with a list of tables in sqlite
+                tableList();
             });
         }      
     });

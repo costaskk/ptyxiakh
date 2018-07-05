@@ -3,7 +3,7 @@ import {execute} from './executeQuery';
 
 //Function to select table when its name is selected from the name link
 window.createTable = function(name) {
-    $('#demo').show();
+    $('#queryResult').show();
     var text = 'SELECT * FROM '+name+';';
     
     var query_results = db.exec(text);
@@ -24,12 +24,12 @@ window.createTable = function(name) {
         dataSet.push(queryResults[row_index]);
     }
 
-    if ($.fn.DataTable.isDataTable('#demo')) {
-        $('#demo').DataTable().destroy();
-        $('#demo').empty();
+    if ($.fn.DataTable.isDataTable('#queryResult')) {
+        $('#queryResult').DataTable().destroy();
+        $('#queryResult').empty();
     };
 
-    $('#demo').DataTable({
+    $('#queryResult').DataTable({
         data: dataSet,
         columns: columns,
         destroy : true
