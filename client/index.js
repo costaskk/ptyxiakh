@@ -80,7 +80,12 @@ else if (location.pathname == '/categories='+category) {
         var test="";
 
         for (var i in contents) {
-            test += "<h1 align='center'>"+contents[i].header+"<h1><hr style='width:40%;'><br/><h2>"+contents[i].title+"</h2>"+contents[i].text+"<div class='line'></div>";
+            // If a header exists in mongoDB then add it to the top of the page
+            if ((contents[i].header !='')||(contents[i].header !=NULL)) {
+                test += "<h1 align='center'>"+contents[i].header+"<h1><hr style='width:40%;'><br/>";
+            }
+            //Fill the page with the contents from the collection in mongoDB
+            test += "<h2>"+contents[i].title+"</h2>"+contents[i].text+"<div class='line'></div>";
         }
         
         var elements = document.getElementById("content");
