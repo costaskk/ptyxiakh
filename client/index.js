@@ -66,6 +66,10 @@ if ((location.pathname == '/')||(location.pathname=='/#')||(location.pathname=='
     }).done(function(){
         var test="";
         for (var i in contents) {
+            // If a header exists in mongoDB then add it to the top of the page
+            if (contents[i].header) {
+                test += "<h1 align='center'>"+contents[i].header+"<h1><hr style='width:40%;'><br/>";
+            }
             test += "<h2>"+contents[i].title+"</h2><br/>"+contents[i].text+"<div class='line'></div>";
         }
         var elements = document.getElementById("content");
