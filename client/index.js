@@ -13,6 +13,8 @@ import {db} from './js/initializeDB';
 import {tableList} from './js/tableList';
 import {execute} from './js/executeQuery';
 import {createTable} from './js/selectTableFromList';
+import {problemCheck} from './js/problemCheck';
+var _ = require('lodash');
 
 //Function to get parameters of urls
 function GetURLParameter(sParam)
@@ -118,6 +120,21 @@ else if (location.pathname == '/categories='+category) {
                 //When page which includes execute_query.html loads, run function tableList() to create a table with a list of tables in sqlite
                 tableList();
             });
-        }      
+        } 
+        else if (contents[i].hasProblemQuery == 'true') {
+
+            //Initiate query variable to store html data
+            var query;
+            var solution = contents[i].query;
+            //Include execute_query.html in our page
+            $.get('query_problems.html', function(data) {
+                query=data;
+            }).done(function(){
+                //Insert execute_query.html elements into page
+                var exec = document.getElementById("content");
+                exec.insertAdjacentHTML("beforeend", query);
+                document.getElementById("hidden").value= solution;
+            });
+        }
     });
 }

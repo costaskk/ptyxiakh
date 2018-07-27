@@ -5,7 +5,7 @@ import {submitEnter} from './submitEnter';
 //Execute queries when the button is pressed
 window.execute = function()
 {
-    //Get table names from database
+    //Get query from input
     var text = document.getElementById("text").value;
     
     try {
