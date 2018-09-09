@@ -30,9 +30,10 @@ window.problemCheck = function(order) {
             if (correct.slice(-1)==';') {
                 correct=correct.slice(0,-1);
             }
-
-            db.exec(text);
-            //if ((firstWord[0].toUpperCase() != "CREATE")&&(firstWord[0].toUpperCase() != "DROP")) {
+            if (firstWord[0].toUpperCase() != "DROP") {
+                db.exec(text);
+            }
+            //if ((firstWord[0].toUpperCase() != "CREATE")&&) {
                 var select_results = db.exec("SELECT * FROM users");
             //}
         }
@@ -51,7 +52,7 @@ window.problemCheck = function(order) {
 
             //Remove ; character from string
             var string = text.replace(';','');     
-        
+            
             //  //Datatable Code
             //  var dataSet = [];
             //  var queryColumns = [{title: 'Table Name'}, {title: 'Number of Entries'}];
